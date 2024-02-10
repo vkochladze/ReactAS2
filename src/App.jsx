@@ -19,7 +19,12 @@ const App = () => {
     }
 
 
-    const testArray = ['1', '2', '3'];
+    const testArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+    window.addEventListener('load', () => {
+        document.title = `${testArray.length} users left`
+    })
+
 
     function generateRandomIndex(max) {
         return Math.floor(Math.random() * max);
@@ -28,12 +33,19 @@ const App = () => {
     function delRandUser() {
         let randomIndex = generateRandomIndex(testArray.length);
 
-        setUserCount(userCount.splice(randomIndex, 1));
+        // userCount = userCount.splice(randomIndex, 1);
+
+        
+        document.title = `${userCount.length} users left`;
+        setUserCount(userCount.filter(function (index) {
+            return index !== String(randomIndex);
+        }));
+        
         console.log(userCount);
     }
 
 
-    const [userCount, setUserCount] = useState(testArray);
+    let [userCount, setUserCount] = useState(testArray);
 
 
     return (
